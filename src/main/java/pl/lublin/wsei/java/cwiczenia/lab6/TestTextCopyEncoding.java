@@ -2,17 +2,18 @@ package pl.lublin.wsei.java.cwiczenia.lab6;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.time.Instant;
 
-public class TestCharacterCopyFlawed {
+public class TestTextCopyEncoding {
     public static void main(String[] args) throws IOException {
         BufferedReader in = null;
         BufferedWriter out = null;
 
-        long startTime = System.nanoTime();
+        long startTime = Instant.now().toEpochMilli();
 
         try {
-            in = new BufferedReader(new FileReader("sample_1920×1280.tiff"));
-            out = new BufferedWriter(new FileWriter("img_copy.tiff"));
+            in = new BufferedReader(new FileReader("dzieweczki.txt"));
+            out = new BufferedWriter(new FileWriter("dzieweczki_java.txt"));
             int c;
 
             while ((c = in.read()) != -1) {
@@ -32,8 +33,6 @@ public class TestCharacterCopyFlawed {
         long endTime = System.nanoTime();
         long timeElapsed = endTime - startTime;
 
-        System.out.println("Czas wykonania w nanosekundach : " + timeElapsed);
-        System.out.println("Czas wykonania w milisekundach : " + timeElapsed / 1000000);
-        System.out.println("Domyślne kodowanie: " + Charset.defaultCharset().displayName());
+        System.out.println("Czas wykonania w nanosekundach : " + (Instant.now().toEpochMilli() - startTime));
     }
 }
